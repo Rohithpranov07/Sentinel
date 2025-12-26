@@ -1,44 +1,46 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import streamlit as st
 from pipeline.orchestrator_graph import build_sentinel_graph
 
-st.set_page_config(page_title="SENTINEL", layout="wide")
+st.set_page_config(page_title="Sentinel", layout="wide")
 
-st.title("🛡️ SENTINEL — Live Semantic Drift Monitor")
+st.title("🛡️ SENTINEL — Semantic Drift Guardian")
 
-graph = build_sentinel_graph()
+st.markdown("Detects drift between **contract intent** and **system behavior**")
 
-st.sidebar.header("📄 Input Simulation")
-
-document_text = st.sidebar.text_area(
-    "Contract / Spec",
+document_text = st.text_area(
+    "📄 Contract / SLA Text",
     "The service response time shall not exceed 100 milliseconds."
 )
 
-logs = st.sidebar.text_area(
-    "Service Logs",
+logs = st.text_area(
+    "📊 Runtime Logs",
     "INFO service-a avg_response_time=150ms"
 )
 
-source_file = st.sidebar.text_input(
-    "Source File",
-    "service_a_contract.txt"
-)
+if st.button("🚀 Run Sentinel"):
+    graph = build_sentinel_graph()
 
-service = st.sidebar.text_input(
-    "Service Name",
-    "service_a"
-)
+    initial_state = {
+        "document_text": document_text,
+        "logs": logs,
+        "source_file": "service_a_contract.txt",
+        "service": "service_a"
+    }
 
-if st.sidebar.button("🚀 Run Sentinel"):
-    with st.spinner("Running agentic pipeline..."):
-        result = graph.invoke({
-            "document_text": document_text,
-            "logs": logs,
-            "source_file": source_file,
-            "service": service
-        })
+    result = graph.invoke(initial_state)
 
-    st.success("Pipeline executed")
+    st.subheader("🧠 Extracted Intent")
+    st.json(result["intent"])
 
-    st.subheader("🎯 Final Action")
+    st.subheader("👁️ Observed Behavior")
+    st.json(result["behavior"])
+
+    st.subheader("⚠️ Drift Analysis")
+    st.json(result["drift"])
+
+    st.subheader("🎯 Action")
     st.json(result["action"])
