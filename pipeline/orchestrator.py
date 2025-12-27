@@ -1,43 +1,57 @@
-"""
-SENTINEL Orchestrator
-Day 6+: End-to-end agentic pipeline with explainability
-"""
+# pipeline/orchestrator.py
 
 from agents.intent_extraction import extract_intent
 from agents.behavior_monitor import extract_behavior
 from agents.drift_detection import detect_drift
 from agents.action_orchestrator import orchestrate_action
+from evaluation.evaluator import evaluate_decision
 
 
-def run_sentinel(document_text: str, logs: str, source_name: str):
+def run_sentinel_pipeline(input_data: dict) -> dict:
     """
-    Full agentic pipeline:
-    Document → Intent → Behavior → Drift → Action
+    Run Sentinel pipeline for ANY service.
+
+    Expected input_data:
+    {
+        "document_text": str,
+        "logs": str,
+        "source_file": str,
+        "service": str
+    }
     """
 
-    print("\n🧠 Extracting intent from document...")
-    intent = extract_intent(document_text, source_name)
-    print("Intent:", intent)
-
-    print("\n👁️ Monitoring behavior from logs...")
-    behavior = extract_behavior(logs, source_name)
-    print("Behavior:", behavior)
-
-    print("\n⚠️ Detecting drift...")
-    drift = detect_drift(intent, behavior)
-    print("Drift:", drift)
-
-    print("\n🎯 Orchestrating action...")
-    action = orchestrate_action(
-        drift_result=drift,
-        intent=intent,
-        behavior=behavior
+    # ---- Step 1: Intent Extraction ----
+    intent = extract_intent(
+        input_data["document_text"],
+        input_data["source_file"]
     )
-    print("Action:", action)
 
+    # ---- Step 2: Behavior Monitoring ----
+    behavior = extract_behavior(
+        input_data["logs"],
+        input_data["service"]
+    )
+
+    # ---- Step 3: Drift Detection ----
+    drift = detect_drift(intent, behavior)
+
+    # ---- Step 4: Action Orchestration ----
+    action = orchestrate_action(drift)
+
+    # ---- Step 5: Confidence / Evaluation Layer ----
+    evaluation = evaluate_decision(
+        intent=intent,
+        behavior=behavior,
+        drift=drift,
+        action=action
+    )
+
+    # ---- Final Structured Output ----
     return {
+        "service": input_data["service"],
         "intent": intent,
         "behavior": behavior,
         "drift": drift,
-        "action": action
+        "action": action,
+        "evaluation": evaluation
     }
