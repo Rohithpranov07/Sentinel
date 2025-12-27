@@ -1,14 +1,24 @@
-def orchestrate_action(drift_result: dict) -> dict:
+def orchestrate_action(drift_result: dict, intent: dict = None, behavior: dict = None) -> dict:
     """
     Decide what action to take based on drift severity.
+    Adds a decision trace for explainability.
     """
 
+    # Default trace (always present)
+    trace = {
+        "intent": intent or {},
+        "behavior": behavior or {},
+        "drift": drift_result
+    }
+
+    # No violation → no action
     if drift_result["status"] != "violation":
         return {
             "priority": "P3",
             "action": "no_action",
             "message": "System is compliant",
-            "recommended_steps": []
+            "recommended_steps": [],
+            "trace": trace
         }
 
     severity = drift_result.get("severity", "low")
@@ -44,5 +54,6 @@ def orchestrate_action(drift_result: dict) -> dict:
         "priority": priority,
         "action": action,
         "message": message,
-        "recommended_steps": steps
+        "recommended_steps": steps,
+        "trace": trace  # 🔍 EXPLAINABILITY CORE
     }

@@ -1,6 +1,6 @@
 """
 SENTINEL Orchestrator
-Day 6: End-to-end agent pipeline
+Day 6+: End-to-end agentic pipeline with explainability
 """
 
 from agents.intent_extraction import extract_intent
@@ -26,20 +26,18 @@ def run_sentinel(document_text: str, logs: str, source_name: str):
     print("\n⚠️ Detecting drift...")
     drift = detect_drift(intent, behavior)
     print("Drift:", drift)
-    action = orchestrate_action(drift)  
 
     print("\n🎯 Orchestrating action...")
-    action = orchestrate_action(drift)
-    action["trace"] = {
-        "intent": intent,
-        "behavior": behavior,
-        "drift": drift
-    }
+    action = orchestrate_action(
+        drift_result=drift,
+        intent=intent,
+        behavior=behavior
+    )
     print("Action:", action)
 
     return {
         "intent": intent,
         "behavior": behavior,
         "drift": drift,
-        "action": action,
+        "action": action
     }
