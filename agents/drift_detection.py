@@ -11,6 +11,11 @@ def detect_drift(intent: dict, behavior: dict) -> dict:
             "status": "unknown",
             "reason": "Metric or unit mismatch",
         }
+    if not intent or not behavior:
+        return {
+            "status": "insufficient_data",
+            "reason": "Missing intent or behavior signal"
+        }
 
     threshold = intent["threshold"]
     observed = behavior["observed_value"]

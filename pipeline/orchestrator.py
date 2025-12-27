@@ -4,54 +4,40 @@ from agents.intent_extraction import extract_intent
 from agents.behavior_monitor import extract_behavior
 from agents.drift_detection import detect_drift
 from agents.action_orchestrator import orchestrate_action
-from evaluation.evaluator import evaluate_decision
+from agents.global_escalator import evaluate_global_escalation
+from evaluation.evaluator import evaluate_confidence
 
 
-def run_sentinel_pipeline(input_data: dict) -> dict:
+def run_sentinel_pipeline(services: list[dict]) -> dict:
     """
-    Run Sentinel pipeline for ANY service.
-
-    Expected input_data:
-    {
-        "document_text": str,
-        "logs": str,
-        "source_file": str,
-        "service": str
-    }
+    Run Sentinel across multiple services and apply global escalation logic.
     """
 
-    # ---- Step 1: Intent Extraction ----
-    intent = extract_intent(
-        input_data["document_text"],
-        input_data["source_file"]
-    )
+    service_results = []
+    service_actions = []
 
-    # ---- Step 2: Behavior Monitoring ----
-    behavior = extract_behavior(
-        input_data["logs"],
-        input_data["service"]
-    )
+    for svc in services:
+        intent = extract_intent(svc["document_text"], svc["source_file"])
+        behavior = extract_behavior(svc["logs"], svc["service"])
+        drift = detect_drift(intent, behavior)
+        action = orchestrate_action(drift)
+        evaluation = evaluate_confidence(intent, behavior, drift)
 
-    # ---- Step 3: Drift Detection ----
-    drift = detect_drift(intent, behavior)
+        service_results.append({
+            "service": svc["service"],
+            "intent": intent,
+            "behavior": behavior,
+            "drift": drift,
+            "action": action,
+            "evaluation": evaluation,
+        })
 
-    # ---- Step 4: Action Orchestration ----
-    action = orchestrate_action(drift)
+        service_actions.append(action)
 
-    # ---- Step 5: Confidence / Evaluation Layer ----
-    evaluation = evaluate_decision(
-        intent=intent,
-        behavior=behavior,
-        drift=drift,
-        action=action
-    )
+    # 🌍 GLOBAL ESCALATION STEP (NEW)
+    escalation = evaluate_global_escalation(service_actions)
 
-    # ---- Final Structured Output ----
     return {
-        "service": input_data["service"],
-        "intent": intent,
-        "behavior": behavior,
-        "drift": drift,
-        "action": action,
-        "evaluation": evaluation
+        "services": service_results,
+        "global_escalation": escalation,
     }
