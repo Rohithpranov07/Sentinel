@@ -1,6 +1,5 @@
 import sys
 import os
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import streamlit as st
@@ -46,28 +45,47 @@ if st.button("🚀 Run Sentinel"):
     st.json(result["action"])
 
     # -------------------------------
-    # 🧩 Explainability Panel
+    # 🧩 Decision Explanation
     # -------------------------------
     st.subheader("🧩 Decision Explanation")
 
-    trace = result.get("action", {}).get("trace")
+    intent = result["intent"]
+    behavior = result["behavior"]
+    drift = result["drift"]
+    action = result["action"]
 
-    if trace:
-        intent = trace.get("intent", {})
-        behavior = trace.get("behavior", {})
-        drift = trace.get("drift", {})
-
-        st.markdown(f"""
+    st.markdown(f"""
 ### Why was this action taken?
 
-📜 **Expected behavior (Contract)**  
-- `{intent.get("metric")}` ≤ **{intent.get("threshold")} {intent.get("unit")}`
+**📜 Expected behavior (contract)**  
+- `{intent.get("metric")} ≤ {intent.get("threshold")} {intent.get("unit")}`
 
-📊 **Observed behavior (Runtime)**  
-- **{behavior.get("observed_value")} {behavior.get("unit")}**
+**📊 Observed behavior (runtime)**  
+- `{behavior.get("observed_value")} {behavior.get("unit")}`
 
-🚨 **Decision**
-- Drift detected with **{drift.get("severity", "").upper()} severity**
-        """)
+**⚠️ Reasoning**
+- Semantic drift detected between documented intent and live behavior  
+- Severity classified as **{drift.get("severity", "").upper()}**
+
+**🤖 Autonomous Action**
+- `{action.get("action")}` with priority `{action.get("priority")}`
+""")
+
+    # -------------------------------
+    # 📈 Decision Confidence
+    # -------------------------------
+    evaluation = result.get("evaluation")
+
+    st.subheader("📈 Decision Confidence")
+
+    if evaluation:
+        st.metric(
+            label="Confidence Score",
+            value=evaluation["confidence_score"],
+            delta=evaluation["confidence_level"].upper()
+        )
+
+        with st.expander("🧠 Why Sentinel Is Confident"):
+            st.write(evaluation["rationale"])
     else:
-        st.info("No violation detected. System is compliant.")
+        st.info("No confidence evaluation available.")
