@@ -26,9 +26,15 @@ def run_sentinel(document_text: str, logs: str, source_name: str):
     print("\n⚠️ Detecting drift...")
     drift = detect_drift(intent, behavior)
     print("Drift:", drift)
+    action = orchestrate_action(drift)  
 
     print("\n🎯 Orchestrating action...")
     action = orchestrate_action(drift)
+    action["trace"] = {
+        "intent": intent,
+        "behavior": behavior,
+        "drift": drift
+    }
     print("Action:", action)
 
     return {
