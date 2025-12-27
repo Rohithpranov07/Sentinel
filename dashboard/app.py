@@ -44,3 +44,28 @@ if st.button("🚀 Run Sentinel"):
 
     st.subheader("🎯 Action")
     st.json(result["action"])
+
+    st.subheader("🧩 Decision Explanation")
+
+    trace = result.get("action", {}).get("trace")
+
+    if trace:
+        intent = trace.get("intent", {})
+        behavior = trace.get("behavior", {})
+        drift = trace.get("drift", {})
+
+       st.markdown(f"""
+    ### Why was this action taken?
+
+    **📜 Expected behavior (Contract)**  
+    - {intent.get("metric")} ≤ {intent.get("threshold")} {intent.get("unit")}
+
+    **📊 Observed behavior (Runtime)**  
+    - {behavior.get("observed_value")} {behavior.get("unit")}
+
+    **⚠️ Decision**
+    - Drift detected with **{drift.get("severity", "").upper()} severity**
+    """)
+   else:
+      st.info("No violation detected. System is compliant.")
+    
