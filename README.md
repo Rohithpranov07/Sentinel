@@ -3,6 +3,7 @@
 <div align="center">
 
 <!-- Add your logo here -->
+---
 
 **Guardian of Semantic Truth**
 
@@ -331,6 +332,7 @@ DASHBOARD_REFRESH_INTERVAL=5  # seconds
 </details>
 
 ---
+> **⚠️ Development Status:** This is a functional proof-of-concept built during the hackathon. Core architecture and agent pipeline are implemented with hardcoded test scenarios. Live Kafka integration and full dashboard features are in active development. See [Roadmap](#-roadmap) for planned features.
 
 ## 🎬 Running SENTINEL
 
