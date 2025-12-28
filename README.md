@@ -2,7 +2,6 @@
 
 <div align="center">
 
-![SENTINEL Logo](docs/images/sentinel_logo.png)
 <!-- Add your logo here -->
 
 **Guardian of Semantic Truth**
@@ -80,7 +79,7 @@ SENTINEL is an **intelligent multi-agent system** that:
 
 ### High-Level Overview
 
-![Architecture Diagram](docs/images/architecture_overview.png)
+![Architecture Diagram]
 <!-- Add your architecture diagram -->
 
 ```
@@ -337,7 +336,6 @@ DASHBOARD_REFRESH_INTERVAL=5  # seconds
 
 ### Option 1: Quick Demo (Recommended for first-time users)
 
-![Quick Start Demo](docs/images/quickstart_demo.gif)
 <!-- Add GIF of the quick start process -->
 
 ```bash
@@ -361,7 +359,6 @@ streamlit run dashboard/app.py
 
 ### Option 2: Full System with Kafka (Production-like)
 
-![Kafka Setup](docs/images/kafka_setup.png)
 <!-- Add screenshot of Kafka dashboard -->
 
 ```bash
@@ -409,7 +406,6 @@ connector.run()
 
 ### 1. Real-Time Compliance Status
 
-![Dashboard Overview](docs/images/dashboard_overview.png)
 <!-- Add screenshot of main dashboard -->
 
 **Features:**
@@ -420,7 +416,7 @@ connector.run()
 
 ### 2. Alert Management
 
-![Alert Panel](docs/images/alert_panel.png)
+
 <!-- Add screenshot of alert panel -->
 
 **Each alert shows:**
@@ -432,7 +428,7 @@ connector.run()
 
 ### 3. Contract Diff Viewer
 
-![Diff Viewer](docs/images/diff_viewer.png)
+
 <!-- Add screenshot of diff viewer showing before/after -->
 
 **Interactive comparison:**
@@ -443,7 +439,7 @@ connector.run()
 
 ### 4. Live Kafka Stream Monitor
 
-![Kafka Monitor](docs/images/kafka_monitor.png)
+
 <!-- Add screenshot of Kafka stream panel -->
 
 **Real-time data flow:**
@@ -454,7 +450,7 @@ connector.run()
 
 ### 5. Agent Reasoning Chains
 
-![Reasoning Chain](docs/images/reasoning_chain.png)
+
 <!-- Add screenshot showing agent thought process -->
 
 **Explainable AI:**
@@ -465,7 +461,7 @@ connector.run()
 
 ### 6. Historical Analytics
 
-![Analytics](docs/images/analytics.png)
+
 <!-- Add screenshot of analytics dashboard -->
 
 **Insights over time:**
@@ -480,7 +476,7 @@ connector.run()
 
 ### Demo Scenario 1: Contract Change Detection
 
-![Test Scenario 1](docs/images/test_scenario_1.gif)
+
 <!-- Add GIF of this test scenario -->
 
 ```bash
@@ -500,7 +496,7 @@ nano data/contracts/service_a_contract.txt
 
 ### Demo Scenario 2: Kafka Log Injection
 
-![Test Scenario 2](docs/images/test_scenario_2.gif)
+
 <!-- Add GIF of Kafka testing -->
 
 ```bash
@@ -522,7 +518,7 @@ python scripts/send_test_log.py \
 
 ### Demo Scenario 3: Multi-Service Monitoring
 
-![Test Scenario 3](docs/images/test_scenario_3.png)
+
 <!-- Add screenshot of multi-service dashboard -->
 
 ```bash
@@ -554,14 +550,14 @@ python scripts/send_test_log.py --service ServiceB --response_time 800
 
 </div>
 
-![Live Data Flow](docs/images/live_data_flow.gif)
+
 <!-- Add GIF showing data flowing through the system -->
 
 ### ✅ Sophisticated Agent System
 
 **5 Specialized Agents with Clear Reasoning:**
 
-![Agent Collaboration](docs/images/agent_collaboration.png)
+
 <!-- Add diagram of agents working together -->
 
 - Intent Extraction: LLM-powered semantic parsing
@@ -582,7 +578,7 @@ python scripts/send_test_log.py --service ServiceB --response_time 800
 
 ### ✅ Production-Ready Architecture
 
-![Production Architecture](docs/images/production_arch.png)
+
 <!-- Add production deployment diagram -->
 
 - Horizontal scaling support
@@ -666,7 +662,7 @@ sentinel/
 
 </div>
 
-![Tech Stack Diagram](docs/images/tech_stack.png)
+
 <!-- Add visual representation of tech stack -->
 
 ---
@@ -693,7 +689,7 @@ pytest -m "not slow"
 
 ### Test Coverage
 
-![Test Coverage](docs/images/test_coverage.png)
+
 <!-- Add screenshot of coverage report -->
 
 **Current Coverage:**
@@ -928,7 +924,7 @@ A: 95%+ accuracy on test scenarios. Accuracy depends on contract clarity and log
 
 ---
 
-![Footer Banner](docs/images/footer_banner.png)
+
 <!-- Add a nice footer banner -->
 
 **⭐ Star this repo if SENTINEL impressed you!**
