@@ -134,7 +134,7 @@ SENTINEL is an **intelligent multi-agent system** that:
 
 ### Agent System Deep-Dive
 
-![Agent Workflow](docs/images/agent_workflow.png)
+![Agent Workflow](docs/images/app_py_pg1.png)
 <!-- Add detailed agent interaction diagram -->
 
 <details>
@@ -407,6 +407,7 @@ connector.run()
 ## 📊 Dashboard Features
 
 ### 1. Real-Time Compliance Status
+![Agent Workflow](docs/images/app_py_pg1.png)
 
 <!-- Add screenshot of main dashboard -->
 
@@ -418,7 +419,7 @@ connector.run()
 
 ### 2. Alert Management
 
-
+![Agent Workflow](docs/images/app_py_pg2.png)
 <!-- Add screenshot of alert panel -->
 
 **Each alert shows:**
@@ -429,7 +430,7 @@ connector.run()
 - **Confidence Score:** How certain the system is
 
 ### 3. Contract Diff Viewer
-
+![Agent Workflow](docs/images/app_py_pg2.png)
 
 <!-- Add screenshot of diff viewer showing before/after -->
 
@@ -452,7 +453,7 @@ connector.run()
 
 ### 5. Agent Reasoning Chains
 
-
+![Agent Workflow](docs/images/app_py_pg3.png)
 <!-- Add screenshot showing agent thought process -->
 
 **Explainable AI:**
@@ -463,7 +464,7 @@ connector.run()
 
 ### 6. Historical Analytics
 
-
+![Agent Workflow](docs/images/app_py_pg4.png)
 <!-- Add screenshot of analytics dashboard -->
 
 **Insights over time:**
@@ -477,7 +478,7 @@ connector.run()
 ## 🧪 Testing the System
 
 ### Demo Scenario 1: Contract Change Detection
-
+![Agent Workflow](docs/images/kafka_dashboard_pg1.png)
 
 <!-- Add GIF of this test scenario -->
 
@@ -498,7 +499,7 @@ nano data/contracts/service_a_contract.txt
 
 ### Demo Scenario 2: Kafka Log Injection
 
-
+![Agent Workflow](docs/images/kafka_dashboard_pg2.png)
 <!-- Add GIF of Kafka testing -->
 
 ```bash
@@ -728,7 +729,7 @@ pytest -m "not slow"
 
 </div>
 
-![Performance Graph](docs/images/performance_graph.png)
+
 <!-- Add graph showing performance metrics over time -->
 
 ---
