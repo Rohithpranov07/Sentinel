@@ -1,30 +1,32 @@
+# evaluation/evaluator.py
+
 def evaluate_decision(intent, behavior, drift, action):
     """
-    Lightweight confidence evaluation.
+    Produce confidence score + rationale for explainability
     """
 
-    score = 1.0
-    reasons = []
-
     if drift["status"] != "violation":
-        score -= 0.3
-        reasons.append("No confirmed violation")
+        return {
+            "confidence_score": 0.95,
+            "confidence_level": "high",
+            "rationale": "System behavior matches documented intent."
+        }
 
-    if behavior["observed_value"] is None:
-        score -= 0.4
-        reasons.append("Behavior signal incomplete")
+    severity = drift.get("severity", "low")
 
-    if action["priority"] == "P1":
-        reasons.append("High-severity response justified")
-
-    score = max(0.0, min(score, 1.0))
+    score_map = {
+        "high": 0.92,
+        "medium": 0.75,
+        "low": 0.6
+    }
 
     return {
-        "confidence_score": round(score, 2),
-        "confidence_level": (
-            "high" if score > 0.75 else
-            "medium" if score > 0.4 else
-            "low"
-        ),
-        "rationale": reasons,
+        "confidence_score": score_map.get(severity, 0.5),
+        "confidence_level": severity,
+        "rationale": (
+            f"Action '{action['action']}' taken because "
+            f"{behavior['observed_value']} {behavior['unit']} "
+            f"violates documented constraint {intent['operator']} "
+            f"{intent['threshold']} {intent['unit']}."
+        )
     }

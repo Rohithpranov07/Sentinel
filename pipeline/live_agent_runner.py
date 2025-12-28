@@ -1,36 +1,48 @@
-import time
-from pipeline.orchestrator import process_single_service
+import json
+from kafka import KafkaConsumer
+from pipeline.orchestrator import run_sentinel_pipeline
 
+KAFKA_TOPIC = "sentinel-logs"
+BOOTSTRAP = "localhost:9092"
+CACHE_FILE = "live_results.jsonl"
 
-def live_event_stream():
-    """
-    Simulated live stream.
-    Later replace with Pathway / Kafka / FS / HTTP.
-    """
-    while True:
-        yield {
-            "service": "service_a",
-            "document_text": "The service response time shall not exceed 100 milliseconds.",
-            "logs": "INFO service-a avg_response_time=150ms",
-            "source_file": "service_a_contract.txt",
-        }
-        time.sleep(5)
-
-
-def run_live_agent_loop():
+def run_live_agent():
     print("🟢 SENTINEL Live Agent Runner started")
-    print("⏳ Watching for live updates...\n")
+    print("📡 Listening to Kafka...")
 
-    for event in live_event_stream():
-        print("📡 New live update detected")
+    consumer = KafkaConsumer(
+        KAFKA_TOPIC,
+        bootstrap_servers=BOOTSTRAP,
+        auto_offset_reset="latest",
+        enable_auto_commit=True,
+        group_id="sentinel-agent",
+        value_deserializer=lambda m: m.decode("utf-8"),
+    )
 
-        result = process_single_service(event)
+    for msg in consumer:
+        raw = msg.value.strip()
 
-        print("🚨 Drift:", result["drift"])
-        print("🎯 Action:", result["action"])
-        print("📈 Confidence:", result["evaluation"]["confidence_score"])
-        print("-" * 50)
+        # 🚑 Ignore empty / invalid messages
+        if not raw or not raw.startswith("{"):
+            continue
 
+        try:
+            event = json.loads(raw)
+        except json.JSONDecodeError:
+            print("⚠️ Skipping malformed Kafka message")
+            continue
+
+        print(f"📥 Event received: {event['service']}")
+
+        result = run_sentinel_pipeline(
+            services=[event]
+        )
+
+        # Persist for Streamlit
+        with open(CACHE_FILE, "a") as f:
+            f.write(json.dumps(result) + "\n")
+
+        print("✅ Processed and cached")
 
 if __name__ == "__main__":
-    run_live_agent_loop()
+    run_live_agent()

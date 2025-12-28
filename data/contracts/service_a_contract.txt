@@ -1,8 +1,1 @@
-TTERVICE A PLA
-
-The service response time shall not exceed 200 milliseconds
-under normal operating conditions.
-
-Availability must not  be at least 99.9%.
-TEST CHANGE
-TEST CHANGE
+The service response time shallt exceed 100 milliseconds.

@@ -1,0 +1,1 @@
+The service response time shall not excee 200 milliseconds.
