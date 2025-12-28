@@ -791,16 +791,6 @@ mypy sentinel/
 
 ---
 
-## 📝 Documentation
-
-- 📖 [Architecture Deep-Dive](docs/architecture.md)
-- 🔌 [API Reference](docs/api_reference.md)
-- 🎬 [Demo Script](docs/demo_script.md)
-- 🤖 [Agent Design Philosophy](docs/agents/README.md)
-- 🚀 [Deployment Guide](docs/deployment.md)
-- 🔧 [Troubleshooting](docs/troubleshooting.md)
-
----
 
 ## 🏆 Hackathon Submission Details
 
