@@ -17,29 +17,13 @@
 
 **🏆 Built for the Agentic AI with Live Data Hackathon**
 
-[Live Demo](#-live-demo) • [Documentation](#-documentation) • [Architecture](#-architecture) • [Quick Start](#-quick-start)
+ [Documentation](#-documentation) • [Architecture](#-architecture) • [Quick Start](#-quick-start)
 
 </div>
 
 ---
 
-## 📺 Live Demo
 
-![SENTINEL Demo](docs/images/demo_overview.gif)
-<!-- Add your main demo GIF showing the full workflow -->
-
-**Watch SENTINEL detect contract violations in real-time:**
-
-<div align="center">
-
-| Edit Contract | Instant Detection | Agent Reasoning |
-|:-------------:|:-----------------:|:---------------:|
-| ![Step 1](docs/images/demo_edit_contract.gif) | ![Step 2](docs/images/demo_alert.gif) | ![Step 3](docs/images/demo_reasoning.gif) |
-<!-- Add three GIFs showing: 1) Editing contract, 2) Alert appearing, 3) Agent explanation -->
-
-</div>
-
----
 
 ## 🎯 The Problem
 
