@@ -23,6 +23,24 @@
 
 ---
 
+## 📺 Live Demo
+
+![SENTINEL Demo](docs/images/demo_overview.gif)
+<!-- Add your main demo GIF showing the full workflow -->
+
+**Watch SENTINEL detect contract violations in real-time:**
+
+<div align="center">
+
+| Edit Contract | Instant Detection | Agent Reasoning |
+|:-------------:|:-----------------:|:---------------:|
+| ![Step 1](docs/images/Demo_1.1.gif) | ![Step 2](docs/images/Demo_1.2.2.gif) | ![Step 3](docs/images/Demo_1.gif) |
+<!-- Add three GIFs showing: 1) Editing contract, 2) Alert appearing, 3) Agent explanation -->
+
+</div>
+
+---
+
 
 
 ## 🎯 The Problem
@@ -521,7 +539,7 @@ python scripts/send_test_log.py \
 
 ### Demo Scenario 3: Multi-Service Monitoring
 
-
+![Step 3](docs/images/Demo_2.gif)
 <!-- Add screenshot of multi-service dashboard -->
 
 ```bash
