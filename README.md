@@ -858,8 +858,8 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 **🔗 Links:**
 - [Live Demo](https://your-demo-url.com) (if deployed)
-- [Video Walkthrough](https://your-video-url.com)
-- [Slide Deck](https://your-slides-url.com)
+- [Video Walkthrough](https://drive.google.com/file/d/1FSSDSo67rsMRneO3L8moV-j-tDXO1O-6/view?usp=share_link)
+- [Slide Deck](https://docs.google.com/presentation/d/1JvEaZM8AgXVtNcHP5B5VF8qG74gkiRmy/edit?usp=share_link&ouid=118334093103685811701&rtpof=true&sd=true)
 
 </div>
 
