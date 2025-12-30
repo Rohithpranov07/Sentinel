@@ -751,6 +751,35 @@ pytest -m "not slow"
 <!-- Add graph showing performance metrics over time -->
 
 ---
+---
+
+## 🏆 Hackathon Criteria Fulfillment Matrix
+
+This table maps **SENTINEL’s implemented capabilities** directly to the **Agentic AI with Live Data** hackathon requirements.
+
+| Hackathon Requirement | Expected by Hackathon | SENTINEL Implementation | Status |
+|----------------------|----------------------|-------------------------|--------|
+| **Agentic AI System** | Multi-step reasoning agents | 5-agent architecture (Intent, Behavior, Drift, Action, Global Escalation) | ✅ Completed |
+| **Live Data Usage** | Never work with stale data | Pathway streaming for documents, logs, and Kafka events | ✅ Completed |
+| **Pathway Integration** | Use Pathway streaming engine | File system connector, Python connector, live re-indexing | ✅ Completed |
+| **Document Change Detection** | Instant awareness of updates | Live contract monitoring with sub-second propagation | ✅ Completed |
+| **Semantic Understanding** | Meaning-based reasoning | LLM-based intent extraction from natural language contracts | ✅ Completed |
+| **Drift Detection** | Detect mismatch between intent & reality | Semantic comparison of SLA intent vs runtime behavior | ✅ Completed |
+| **Multi-Agent Reasoning** | Coordinated agent workflows | LangGraph orchestration across agents | ✅ Completed |
+| **Actionable Intelligence** | Not just detection, but action | Priority-based alerts with remediation steps | ✅ Completed |
+| **Explainability** | Clear reasoning trace | Full decision trace (intent → behavior → drift → action) | ✅ Completed |
+| **Confidence & Evaluation Layer** | Trust & reliability | Confidence scoring + rationale for every decision | ✅ Completed |
+| **Live Log Streaming** | Streaming telemetry ingestion | Pathway Python connector + Kafka consumer | ✅ Completed |
+| **Kafka Integration** | Real-time event pipelines | Kafka topic ingestion for service logs | ✅ Completed |
+| **Multi-Service Support** | Real-world scalability | Single pipeline handling multiple services simultaneously | ✅ Completed |
+| **Global Escalation Logic** | Cross-service reasoning | System-wide escalation when multiple violations occur | ✅ Completed |
+| **Autonomous Operation** | No manual triggers | Fully event-driven, always-on agents | ✅ Completed |
+| **Dashboard UI** | Human-in-the-loop visibility | Streamlit dashboard with live execution & explanations | ✅ Completed |
+| **Live Demonstration Ready** | Clear demo narrative | Edit contract → see drift → action in seconds | ✅ Completed |
+| **Testing Coverage** | Engineering excellence | Unit tests + integration tests for agents & pipelines | ✅ Completed |
+| **Production-Oriented Design** | Beyond toy demos | Modular architecture, extensible connectors, clean APIs | ✅ Completed |
+
+---
 
 ## 🗺️ Roadmap
 
